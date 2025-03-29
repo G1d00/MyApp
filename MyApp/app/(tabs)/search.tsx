@@ -7,7 +7,7 @@ import useFetch from '@/services/useFetch'
 import { fetchMovies } from '@/services/api'
 import { icons } from '@/constants/icons'
 import SearchBar from '@/components/SearchBar'
-import { updateSerachCount } from '@/services/appwrite'
+import { updateSearchCount } from '@/services/appwrite'
 
 
 const search = () => {
@@ -22,18 +22,23 @@ const search = () => {
   reset,} = useFetch(() => fetchMovies({query: searchQuery}), false);    // destructring the useFetch hook
 
   useEffect(() => {
-    
     const timeoutId = setTimeout (
       async() => {
         if (searchQuery.trim()) {
           await fetchData();
-          if(movies?.length > 0 && movies?.[0])
-            await updateSerachCount(searchQuery, movies[0]);
-          
+ 
       } else reset() }
     , 500);
      return() => clearTimeout(timeoutId);    // return() func part of uesEffect used for cleaning up. cleartimeout resets the timeout 
   }, [searchQuery]);
+
+  useEffect(() => {
+    if(movies?.length > 0 && movies?.[0])
+      {
+        updateSearchCount(searchQuery, movies[0]);
+      }
+
+  }, [movies])
 
   return (
     <View className='flex-1 bg-primary'>

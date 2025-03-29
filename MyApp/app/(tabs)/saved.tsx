@@ -2,7 +2,7 @@ import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { images } from '@/constants/images'
 import { icons } from '@/constants/icons'
-import { ScrollView } from 'react-native-gesture-handler'
+import { ScrollView } from 'react-native'
 
 const saved = () => {
   return (
