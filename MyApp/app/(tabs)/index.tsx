@@ -27,7 +27,7 @@ export default function Index() {
       <ScrollView className ="flex-1 px-5" showsVerticalScrollIndicator={false} contentContainerStyle={{minHeight: "100%",paddingBottom: 10}}>
         <Image source ={icons.logo} className="w-12 h-10 mt-20 mb-5 mx-auto"/>
         
-        {moviesLoading ? (
+        {moviesLoading ? (     // loading indicator when loading movies 
           <ActivityIndicator
             size = "large"
             color = "#0000ff"
@@ -42,7 +42,7 @@ export default function Index() {
               />
               <>
                 <Text className="text-lg text-white font-bold mt-5 mb-3">Latest Movies</Text>
-                <FlatList 
+                <FlatList               // Flatlist of movie cards 
                   data={movies}
                   renderItem={({item}) => (
                     <MovieCard
@@ -57,6 +57,7 @@ export default function Index() {
                     gap: 20,
                     paddingRight: 5,
                     marginBottom: 10,
+                    
                   }}
                   className="mt-2 pb-32"
                   scrollEnabled={false}
